@@ -24,7 +24,7 @@ namespace Api.Controllers
             var infectado = new Infectado(dto.DataNascimento, dto.Sexo, dto.Latitude, dto.Longitude);
 
             _infectadosCollection.InsertOne(infectado);
-            
+
             return StatusCode(201, "Infectado adicionado com sucesso");
         }
 
@@ -32,7 +32,7 @@ namespace Api.Controllers
         public ActionResult ObterInfectados()
         {
             var infectados = _infectadosCollection.Find(Builders<Infectado>.Filter.Empty).ToList();
-            
+
             return Ok(infectados);
         }
     }
