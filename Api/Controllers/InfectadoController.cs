@@ -1,4 +1,6 @@
-﻿using Api.Data.Collections;
+﻿using System;
+using System.Xml;
+using Api.Data.Collections;
 using Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -34,6 +36,29 @@ namespace Api.Controllers
             var infectados = _infectadosCollection.Find(Builders<Infectado>.Filter.Empty).ToList();
 
             return Ok(infectados);
+        }
+
+         [HttpPut]
+        public ActionResult AtualizarInfectados([FromBody] InfectadoDto dto)
+        {
+
+            var infectados = _infectadosCollection.UpdateOne(
+                Builders<Infectado>.Filter.Where(_ => _.DataNascimento == dto.DataNascimento),
+                 Builders<Infectado>.Update.Set("sexo", dto.Sexo));
+            
+
+            return Ok("Atualizado com sucesso");
+        }
+
+        [HttpDelete("dataNasc")]
+        public ActionResult DeletarInfectado(string dataNasc)
+        {
+
+            var infectados = _infectadosCollection.DeleteOne(
+                Builders<Infectado>.Filter.Where(_ => _.DataNascimento ==Convert.ToDateTime(dataNasc)));
+            
+
+            return Ok("Deletado com sucesso");
         }
     }
 }
