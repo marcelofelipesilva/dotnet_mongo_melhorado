@@ -39,6 +39,14 @@ namespace Api.Controllers
             return Ok(infectados);
         }
 
+        [HttpGet("{Id}")]
+        public ActionResult ObterInfectadosPorID(string Id)
+        {
+            var infectado = _infectadosCollection.Find(
+                Builders<Infectado>.Filter.Where(_ => _.Id == Id)).ToList();
+
+            return Ok(infectado);
+        }
        // atualizando campos atraves do id
 
         [HttpPut]

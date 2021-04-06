@@ -8,7 +8,6 @@ https://localhost:5001/infectado
 
 ```json
 {
-    "id": "2345",
 	"dataNascimento": "1990-03-01",
 	"sexo": "M",
 	"estado": "Rio de  Janeiro",
