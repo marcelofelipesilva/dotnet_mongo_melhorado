@@ -23,7 +23,7 @@ namespace Api.Controllers
         [HttpPost]
         public ActionResult SalvarInfectado([FromBody] InfectadoDto dto)
         {
-            var infectado = new Infectado(dto.DataNascimento, dto.Sexo, dto.Latitude, dto.Longitude);
+            var infectado = new Infectado(dto.Id, dto.DataNascimento, dto.Sexo, dto.Estado, dto.Cidade);
 
             _infectadosCollection.InsertOne(infectado);
 
@@ -44,18 +44,21 @@ namespace Api.Controllers
 
             var infectados = _infectadosCollection.UpdateOne(
                 Builders<Infectado>.Filter.Where(_ => _.DataNascimento == dto.DataNascimento),
-                 Builders<Infectado>.Update.Set("sexo", dto.Sexo));
+                 Builders<Infectado>.Update.Set("sexo", dto.Sexo)
+                  );
             
 
             return Ok("Atualizado com sucesso");
         }
+       
+        //deleta infectado por id
 
-        [HttpDelete("dataNasc")]
-        public ActionResult DeletarInfectado(string dataNasc)
+        [HttpDelete("{Id}")]
+        public ActionResult DeletarInfectado(int Id)
         {
 
             var infectados = _infectadosCollection.DeleteOne(
-                Builders<Infectado>.Filter.Where(_ => _.DataNascimento ==Convert.ToDateTime(dataNasc)));
+                Builders<Infectado>.Filter.Where(_ => _.Id ==Convert.ToString(Id)));
             
 
             return Ok("Deletado com sucesso");

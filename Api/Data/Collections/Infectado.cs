@@ -5,17 +5,19 @@ namespace Api.Data.Collections
 {
     public class Infectado
     {
-        public Infectado(string id,DateTime dataNascimento, string sexo, double latitude, double longitude)
+        public Infectado(string id,DateTime dataNascimento, string sexo, string estado, string cidade)
         {
             this.Id = id;
             this.DataNascimento = dataNascimento;
             this.Sexo = sexo;
-            this.Localizacao = new GeoJson2DGeographicCoordinates(longitude, latitude);
+            this.Estado = estado;
+            this.Cidade = cidade;
         }
 
         public string Id { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Sexo { get; set; }
-        public GeoJson2DGeographicCoordinates Localizacao { get; set; }
+        public string Estado { get; set; }
+         public string Cidade { get; set; }
     }
 }
