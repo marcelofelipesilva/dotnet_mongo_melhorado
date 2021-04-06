@@ -1,6 +1,14 @@
-# dotnet-mongo
+# dotnet-mongo melhorado
 
-Exemplo de aplicação .net core com mongodb.
+Exemplo de aplicação .net core com mongodb com CRUD.
+
+Do projeto original do Gabriel foi adicionado:
+
+-- Adicionado Id do infectado com id sendo gerado pelo mongodb .
+-- Método Put update atualização do infectado de todos seus campos filtrado pelo id.
+-- Método Delete deleta documento da collection infectado pelo id.
+-- Método Get busca documento da collection infectado pelo id.
+-- Foram alterados a geolocalização para os campos estado e cidade.
 
 Para teste:
 

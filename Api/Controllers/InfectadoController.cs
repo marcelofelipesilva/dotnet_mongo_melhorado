@@ -40,7 +40,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{Id}")]
-        public ActionResult ObterInfectadosPorID(string Id)
+        public ActionResult ObterInfectadoPorID(string Id)
         {
             var infectado = _infectadosCollection.Find(
                 Builders<Infectado>.Filter.Where(_ => _.Id == Id)).ToList();
@@ -67,11 +67,11 @@ namespace Api.Controllers
         //deleta infectado por id
 
         [HttpDelete("{Id}")]
-        public ActionResult DeletarInfectado(int Id)
+        public ActionResult DeletarInfectado(string Id)
         {
 
             var infectados = _infectadosCollection.DeleteOne(
-                Builders<Infectado>.Filter.Where(_ => _.Id ==Convert.ToString(Id)));
+                Builders<Infectado>.Filter.Where(_ => _.Id == Id));
             
 
             return Ok("Deletado com sucesso");
