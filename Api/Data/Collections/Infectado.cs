@@ -1,5 +1,6 @@
 using System;
-using MongoDB.Driver.GeoJsonObjectModel;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace Api.Data.Collections
 {
@@ -13,7 +14,9 @@ namespace Api.Data.Collections
             this.Estado = estado;
             this.Cidade = cidade;
         }
-
+        
+        // auto gerando id pelo mongo db
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         public string Id { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Sexo { get; set; }

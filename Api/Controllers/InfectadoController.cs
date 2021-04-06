@@ -23,7 +23,8 @@ namespace Api.Controllers
         [HttpPost]
         public ActionResult SalvarInfectado([FromBody] InfectadoDto dto)
         {
-            var infectado = new Infectado(dto.Id, dto.DataNascimento, dto.Sexo, dto.Estado, dto.Cidade);
+           
+            var infectado = new Infectado(dto.Id,dto.DataNascimento, dto.Sexo, dto.Estado, dto.Cidade);
 
             _infectadosCollection.InsertOne(infectado);
 
@@ -38,15 +39,19 @@ namespace Api.Controllers
             return Ok(infectados);
         }
 
-         [HttpPut]
-        public ActionResult AtualizarInfectados([FromBody] InfectadoDto dto)
+       // atualizando campos atraves do id
+
+        [HttpPut]
+        public ActionResult AtualizarInfectado([FromBody] InfectadoDto dto)
         {
 
             var infectados = _infectadosCollection.UpdateOne(
-                Builders<Infectado>.Filter.Where(_ => _.DataNascimento == dto.DataNascimento),
-                 Builders<Infectado>.Update.Set("sexo", dto.Sexo)
-                  );
+                Builders<Infectado>.Filter.Where(_ => _.Id == dto.Id),
+                Builders<Infectado>.Update.Set("dataNascimento", dto.DataNascimento)
+                .Set("sexo",dto.Sexo).Set("estado", dto.Estado).Set("cidade",dto.Cidade));
             
+         
+    
 
             return Ok("Atualizado com sucesso");
         }
