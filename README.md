@@ -1,8 +1,12 @@
 # dotnet-mongo melhorado
 
+
 Exemplo de aplicação .net core com mongodb com CRUD.
 
-Do projeto original do Gabriel foi adicionado:
+Do projeto original do Gabriel Faraday
+https://github.com/gabrielfbarros/dotnet-mongo
+
+ Foi adicionado:
 
 -- Adicionado Id do infectado com id sendo gerado pelo mongodb .
 -- Método Put update atualização do infectado de todos seus campos filtrado pelo id.
